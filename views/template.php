@@ -9,16 +9,22 @@
     <link rel="stylesheet" type="text/css" href="assets/bootstrap337/css/bootstrap.min.css">
 </head>
 <body>
+    <header>
 		<?php 
 			require_once 'modules/header.php';
 		?>
-
+    </header>
 	<section>
 		<?php 
 			
 			$objetomvc = new controller();
 			//$objetomvc -> enlacePaginaController();
 		?>
+        <div class="container">
+	       <h2>BIENVENIDOS</h2>
+        </div>
+        
+        
 	</section>
 
 	<footer>
@@ -29,4 +35,3 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
 </body>
-</html>
