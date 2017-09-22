@@ -5,10 +5,11 @@
 		</div>
 		<div class="collapse navbar-collapse">
 			<ul class="nav navbar-nav navbar-right">
-				<li class="active"><a href="">Inicio</a></li>
-				<li><a href="">Nosotros</a></li>
-				<li><a href="">Contacto</a></li>
+                <li><a href="index.php">Inicio</a></li>
+				<li><a href="index.php?action=nosotros">Nosotros</a></li>
+                <li><a href="index.php?action=contacto">Contacto</a></li>
 			</ul>
 		</div>
 	</div>
 </nav>
+<hr/>
