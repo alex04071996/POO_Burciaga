@@ -9,6 +9,7 @@
 				<li><a href="index.php?action=nosotros">Nosotros</a></li>
                 <li><a href="index.php?action=contacto">Contacto</a></li>
                 <li><a href="index.php?action=agregarproducto">Agregar producto</a></li>
+                <li><a href="index.php?action=ver">Lista de productos</a></li>
 			</ul>
 		</div>
 	</div>
