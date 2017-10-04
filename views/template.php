@@ -16,15 +16,9 @@
     </header>
 	<section>
 		<?php 
-			
 			$objetomvc = new controller();
-			//$objetomvc -> enlacePaginaController();
+			$objetomvc -> linkPageController();
 		?>
-        <div class="container">
-	       <h2>BIENVENIDOS</h2>
-        </div>
-        
-        
 	</section>
 
 	<footer>
