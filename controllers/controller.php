@@ -27,7 +27,8 @@
 							<td>'.$item[1].'</td>
 							<td>'.$item[2].'</td>
 							<td><a href="index.php?action=editar&id='.$item[0].'"><span class="glyphicon glyphicon-pencil"></a>
-							<a href="index.php?action=ver&id_borrar='.$item[0].'"><span class="glyphicon glyphicon-remove"></a></td></tr>';
+							<a href="index.php?action=ver&id_borrar='.$item[0].'"><span class="glyphicon glyphicon-remove"></a></td>
+					</tr>';
 			}
 		}
 		public static function borrarProductoController(){
