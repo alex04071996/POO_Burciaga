@@ -8,13 +8,15 @@
 			include 'views/template.php';
 		}
 		public static function agregarProductoController(){
-			$datosController= array("nombreproducto"=>$_POST["nombreproducto"],"codigo"=>$_POST["codigoproducto"],"precio"=>$_POST["precioproducto"]);
-			$res = POO::agregarProductoModel($datosController,"productos");
-			if ($res=="ok") {
-				alert("Producto agregado correctamente.");
-				header("location:index.php?action=ver");
-			}else{
-				alert("Error al intentar registrar, intente de nuevo o consulte a su administrador.");
+			if (isset($_POST["AgregarProducto"])) {
+				$datosController= array("nombreproducto"=>$_POST["nombreproducto"],"codigo"=>$_POST["codigoproducto"],"precio"=>$_POST["precioproducto"]);
+				$res = POO::agregarProductoModel($datosController,"productos");
+				if ($res=="ok") {
+					echo '<script language="javascript">alert("Producto agregado correctamente.");</script>';
+					header("location:index.php?action=ver");
+				}else{
+					echo '<script language="javascript">alert("Error al intentar registrar, intente de nuevo o consulte a su administrador.");</script>';
+				}
 			}
 		}
 		public  static function linkPageController(){
@@ -26,16 +28,20 @@
 			$answer = EnlacesPaginas::enlacesPaginasModel($linkController);
 			include $answer;
 		}
-		public static function verProductosControler(){
+		public static function verProductosController(){
 			$res = POO::verProductosModel("productos");
-			foreach ($res as $row => $item) {
-				echo '<tr>
-							<td>'.$item[0].'</td>
-							<td>'.$item[1].'</td>
-							<td>'.$item[2].'</td>
-							<td><a href="index.php?action=editarproducto&id_editar='.$item[0].'"><span class="glyphicon glyphicon-pencil"></a>
-							<a href="index.php?action=ver&id_borrar='.$item[0].'"><span class="glyphicon glyphicon-remove"></a></td>
-					</tr>';
+			if ($res=="fail") {
+				echo "No hay datos existentes dentro de la base.";
+			}else{
+				foreach ($res as $row => $item) {
+					echo '<tr>
+								<td>'.$item[0].'</td>
+								<td>'.$item[1].'</td>
+								<td>'.$item[2].'</td>
+								<td><a href="index.php?action=editarproducto&id_editar='.$item[0].'"><span class="glyphicon glyphicon-pencil"></a>
+								<a href="index.php?action=ver&id_borrar='.$item[0].'"><span class="glyphicon glyphicon-remove"></a></td>
+						</tr>';
+				}
 			}
 		}
 		public static function borrarProductoController(){
@@ -45,7 +51,7 @@
 				if ($res== "ok") {
 					header("location:index.php?action=ver");
 				}else{
-					echo "Error";
+					echo '<script language="javascript">alert("Error, no se pudo eliminar el producto, intente de nuevo o consulte a su administrador.");</script>';
 				}
 			}
 		}
@@ -75,14 +81,19 @@
 			}
 		}
 		public static function edicionProductoController(){
-			$datosController= array("idproducto"=>$_POST["idproducto"],"nombreproducto"=>$_POST["nombreproducto"],"codigo"=>$_POST["codigoproducto"],"precio"=>$_POST["precioproducto"]);
-			$res = POO::agregarProductoModel($datosController,"productos");
-			if ($res=="ok") {
-				alert("Producto agregado correctamente.");
-				header("location:index.php?action=ver");
+			if (isset($_GET["id_producto"])) {
+				$datosController= array("idproducto"=>$_POST["idproducto"],"nombreproducto"=>$_POST["nombreproducto"],"codigo"=>$_POST["codigoproducto"],"precio"=>$_POST["precioproducto"]);
+				$res = POO::agregarProductoModel($datosController,"productos");
+				if ($res=="ok") {
+					echo '<script language="javascript">alert("Producto editado correctamente.");</script>';
+					header("location:index.php?action=ver");
+				}else{
+					echo '<script language="javascript">alert("Eror al intentar editar, intente de nuevo o consulte a su administrador.");</script>';
+				}
 			}else{
-				alert("Error al intentar registrar, intente de nuevo o consulte a su administrador.");
+				echo "No se elijio un articulo para su edicion.";
 			}
+			
 		}
 	}
  ?>

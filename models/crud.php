@@ -9,12 +9,17 @@
 			}else{
 				return "fail";
 			}
+			$sen->close();
 		}
 		public static function verProductosModel($nombre){
 			$sql = "select * from $nombre;";
 			$sen = Conexion::conectar()->query($sql);
-			$res = $sen->fetch_all();
-			return $res;
+			if ($sen) {
+				$res = $sen->fetch_all();
+				return $res;
+			}else{
+				return"fail";
+			}
 			$sen->close();
 		}
 		public static function borrarProductoModel($id,$tabla){
@@ -35,6 +40,7 @@
 			}else{
 				return "error";
 			}
+			$sen->close();
 		}
 		public static function agregarProductoModel($datosModel,$tabla){
 			$sql = "insert into $tabla (nombre,codigo,precio) values (nombre='".$datosModel["nombreproducto"]."', codigo='".$datosModel["codigo"]."', precio='".$datosModel["precio"].");";
@@ -44,6 +50,7 @@
 			}else{
 				return "error";
 			}
+			$sen->close();
 		}
 	}
  ?>
