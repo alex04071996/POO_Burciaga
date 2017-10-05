@@ -1,6 +1,6 @@
 <div class="container">
 	<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-		<form method="POST">
+		<form method="POST" name="AgregarProducto">
 			<label>Nombre del producto:</label>
 			<input type="text" name="nombreproducto" class="form-control">
 			<label>Precio:</label>
@@ -12,3 +12,7 @@
 		</form>
 	</div>
 </div>
+<?php 
+	$reg = new controller();
+	$reg->agregarProductoController();
+ ?>

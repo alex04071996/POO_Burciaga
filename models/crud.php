@@ -27,5 +27,23 @@
 			}
 			$sen->close();
 		}
+		public static function editarProductoModel($datosModel,$tabla){
+			$sql = "update $tabla set nombre='".$datosModel["nombreproducto"]."', codigo='".$datosModel["codigo"]."', precio='".$datosModel["precio"]."' where idproducto=".$datosModel["idproducto"].";";
+			$sen=Conexion::conectar()->query($sql);
+			if ($sen) {
+				return "ok";
+			}else{
+				return "error";
+			}
+		}
+		public static function agregarProductoModel($datosModel,$tabla){
+			$sql = "insert into $tabla (nombre,codigo,precio) values (nombre='".$datosModel["nombreproducto"]."', codigo='".$datosModel["codigo"]."', precio='".$datosModel["precio"].");";
+			$sen=Conexion::conectar()->query($sql);
+			if ($sen) {
+				return "ok";
+			}else{
+				return "error";
+			}
+		}
 	}
  ?>
