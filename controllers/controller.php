@@ -61,7 +61,7 @@
 									<input type="hide" name="idproducto" value="'.$res[0].'>"
 									<input type="text" name="nombreproducto" class="form-control" value="'.$res[1].'">
 									<label>Precio:</label>
-									<input type="number" name="precioproducto" class="form-control" value="'.$res[2]'.">
+									<input type="number" name="precioproducto" class="form-control" value="'.$res[2].'">
 									<label>Codigo de barras:</label>
 									<input type="number" name="codigoproducto" class="form-control" value="'.$res[3].'"><br>
 									<button type="submit" name="EditarProducto" class="btn btn-default">Aceptar</button>
