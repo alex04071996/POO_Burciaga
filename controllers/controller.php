@@ -41,6 +41,7 @@
 								<td><a href="index.php?action=editarproducto&id_editar='.$item[0].'"><span class="glyphicon glyphicon-pencil"></a>
 								<a href="index.php?action=ver&id_borrar='.$item[0].'"><span class="glyphicon glyphicon-remove"></a></td>
 						</tr>';
+						//echo $row[2];
 				}
 			}
 		}
@@ -59,31 +60,29 @@
 			if (isset($_GET["id_editar"])) {
 				$id = $_GET["id_editar"];
 				$res = POO::editarProductoModel($id,"productos");
-				if ($res=="ok") {
+				foreach ($res as $key => $item) {
 					echo '<div class="container">
 							<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
 								<form method="POST" name="EditarProducto">
 									<label>Nombre del producto:</label>
-									<input type="hide" name="idproducto" value="'.$res[0].'>"
-									<input type="text" name="nombreproducto" class="form-control" value="'.$res[1].'">
+									<input type="hidden" name="idproducto" value="'.$item[0].'">
+									<input type="text" name="nombreproducto" class="form-control" value="'.$item[1].'">
 									<label>Precio:</label>
-									<input type="number" name="precioproducto" class="form-control" value="'.$res[2].'">
+									<input type="number" name="precioproducto" class="form-control" value="'.$item[2].'">
 									<label>Codigo de barras:</label>
-									<input type="number" name="codigoproducto" class="form-control" value="'.$res[3].'"><br>
-									<button type="submit" name="EditarProducto" class="btn btn-default">Aceptar</button>
+									<input type="number" name="codigoproducto" class="form-control" value="'.$item[3].'"><br>
+									<a href="index.php?action=edicionproducto&id_producto='.$item[0].'" class="btn btn-default">Aceptar</a>
 									<a href="index.php?action=lista" class="btn btn-default">Regresar</a>
 								</form>
 							</div>
 						</div>';
-				}else{
-					echo "Error";
 				}
 			}
 		}
 		public static function edicionProductoController(){
 			if (isset($_GET["id_producto"])) {
-				$datosController= array("idproducto"=>$_POST["idproducto"],"nombreproducto"=>$_POST["nombreproducto"],"codigo"=>$_POST["codigoproducto"],"precio"=>$_POST["precioproducto"]);
-				$res = POO::agregarProductoModel($datosController,"productos");
+				$datosController= array("idproducto"=>$_GET["id_producto"],"nombreproducto"=>$_POST["nombreproducto"],"codigo"=>$_POST["codigoproducto"],"precio"=>$_POST["precioproducto"]);
+				$res = POO::edicionProductoModel($datosController,"productos");
 				if ($res=="ok") {
 					echo '<script language="javascript">alert("Producto editado correctamente.");</script>';
 					header("location:index.php?action=ver");

@@ -1,5 +1,5 @@
 <?php 
-	error_reporting(0);
+	//error_reporting(0);
 	class Conexion{
 		#metodo para crear conexion
 		public static function conectar(){

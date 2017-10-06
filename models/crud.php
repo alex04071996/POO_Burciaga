@@ -32,8 +32,15 @@
 			}
 			$sen->close();
 		}
-		public static function editarProductoModel($datosModel,$tabla){
-			$sql = "update $tabla set nombre='".$datosModel["nombreproducto"]."', codigo='".$datosModel["codigo"]."', precio='".$datosModel["precio"]."' where idproducto=".$datosModel["idproducto"].";";
+		public static function editarProductoModel($id,$tabla){
+			$sql = "select * from $tabla where id=$id;";
+			$sen=Conexion::conectar()->query($sql);
+			$res = $sen->fetch_all();
+			return $res;
+			$sen->close();
+		}
+		public static function edicionProductoModel($datosModel,$tabla){
+			$sql = "update $tabla set nombre='".$datosModel["nombreproducto"]."', codigo='".$datosModel["codigo"]."', precio='".$datosModel["precio"]."' where id=".$datosModel["idproducto"].";";
 			$sen=Conexion::conectar()->query($sql);
 			if ($sen) {
 				return "ok";
@@ -43,7 +50,7 @@
 			$sen->close();
 		}
 		public static function agregarProductoModel($datosModel,$tabla){
-			$sql = "insert into $tabla (nombre,codigo,precio) values (nombre='".$datosModel["nombreproducto"]."', codigo='".$datosModel["codigo"]."', precio='".$datosModel["precio"].");";
+			$sql = "insert into $tabla (nombre,codigo,precio) values ('".$datosModel["nombreproducto"]."','".$datosModel["codigo"]."', '".$datosModel["precio"]."');";
 			$sen=Conexion::conectar()->query($sql);
 			if ($sen) {
 				return "ok";
